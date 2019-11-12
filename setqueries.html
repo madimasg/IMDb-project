@@ -57,15 +57,15 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Services
-      <small>Subheading</small>
+    <h1 class="mt-4 mb-3">SQL Queries
+      <!-- <small>Subheading</small> -->
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>
       </li>
-      <li class="breadcrumb-item active">Services</li>
+      <li class="breadcrumb-item active">SQL Queries</li>
     </ol>
 
     <!-- Image Header -->
@@ -75,36 +75,114 @@
     <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header">SQL Queries 1</h4>
+          <img class="SQL Queries 1" src="a.jpg" alt="SQL Queries 1">
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
+            <p class="card-text">Show the information of movies (Title, Region, Language, Year, Rating, Votes) which have average rating greater than 7 and number of votes greater than 1000.</p>
+            <p class="card-text">
+              Statement:
+              </br>SELECT tb.primaryTitle, ta.region, ta.language, tb.startYear, tr.averageRating,	tr.numVotes 
+              </br>FROM Title_basics tb NATURAL JOIN Title_akas ta NATURAL JOIN Title_ratings tr 
+              </br>WHERE averageRating>7 AND numVotes>1000 
+              </br>LIMIT 10;</p>
+            </div>
           </div>
         </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <h4 class="card-header">SQL Queries 2</h4>
+            <img class="SQL Queries 2" src="b.jpg" alt="SQL Queries 2">
+            <div class="card-body">
+              <p class="card-text">b.	Show the names of persons who have directed more than 10 movies.</p>
+              <p class="card-text">
+                Statement:
+                </br>SELECT nb.primaryName 
+                </br>FROM Name_basic nb INNER JOIN Title_crew tc ON nb.tconst=tc.directors 
+                </br>WHERE nb.knownForTitle LIKE '%,%,%,%,%,%,%,%,%,%'
+                </br>LIMIT 10;</p>
+              </div>
+            </div>
       </div>
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
+            <h4 class="card-header">SQL Queries 3</h4>
+            <img class="SQL Queries 3" src="c.jpg" alt="SQL Queries 3">
+            <div class="card-body">
+              <p class="card-text">Show the top 10 TV series (more than 1 season) which most average ratings.</p>
+              <p class="card-text">
+                Statement:
+                </br>SELECT DISTINCT tb.primaryTitle  
+                </br>FROM Episode e  
+                </br>INNER JOIN Title_basic tb ON e.parentTconst=tb.tconst 
+                </br>WHERE e.seasonNUMBER>1
+                </br>LIMIT 10;</p>
+              </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">SQL Queries 4</h4>
+                <img class="SQL Queries 4" src="d1.jpg" alt="SQL Queries 4">
+                <div class="card-body">
+                  <p class="card-text">You need to design at least FOUR more queries which satisfy use aggregate functions, “group by” and “order by”.</p>
+                  <p class="card-text">
+                    Statement:
+                    </br>SELECT primaryName 
+                    </br>FROM Name_basic  
+                    </br>WHERE deathYEar='NULL'
+                    </br>GROUP BY primaryName
+                    </br>LIMIT 10;</p>
+                </div>
+              </div>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
+          <div class="col-lg-4 mb-4">
+              <div class="card h-100">
+                  <h4 class="card-header">SQL Queries 5</h4>
+                  <img class="SQL Queries 5" src="d2.jpg" alt="SQL Queries 5">
+                  <div class="card-body">
+                    <p class="card-text">You need to design at least FOUR more queries which satisfy use set operations.</p>
+                    <p class="card-text">
+                      Statement:
+                      </br>SELECT primaryName 
+                      </br>FROM Name_basic
+                      </br>UNION
+                      </br>SELECT title  
+                      </br>FROM Title_akas tb.primaryTitle
+                      </br>GROUP BY title 
+                      </br>LIMIT 10;</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">SQL Queries 6</h4>
+                    <img class="SQL Queries 6" src="d3.jpg" alt="SQL Queries 6">
+                    <div class="card-body">
+                      <p class="card-text">You need to design at least FOUR more queries which satisfy use nested/sub queries (either in SELECT clause, FROM clause or WHERE clause).</p>
+                      <p class="card-text">
+                        Statement:
+                        </br>SELECT primaryName 
+                        </br>FROM Title_basics
+                        </br>WHERE startYear = (SELECT CEIL(AVG(startYear)) FROM Title_basics WHERE startYear LIKE '19%')e 
+                        </br>LIMIT 10;</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 mb-4">
+                  <div class="card h-100">
+                      <h4 class="card-header">SQL Queries 7</h4>
+                      <img class="SQL Queries 7" src="d4.jpg" alt="SQL Queries 7">
+                      <div class="card-body">
+                        <p class="card-text">You need to design at least FOUR more queries which satisfy use JOIN operations.</p>
+                        <p class="card-text">
+                          Statement:
+                          </br>SELECT DISTINCT(primaryTitle), language
+                          </br>FROM Title_basic tb INNER JOIN Title_akas ON tb.tconst=ta.tconst
+                          </br>WHERE primaryTitle LIKE 'Alien%'
+                          </br>LIMIT 10;</p>
+                      </div>
+                    </div>
+                </div>
       </div>
     </div>
     <!-- /.row -->
@@ -115,7 +193,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; IMDb G7 2019</p>
     </div>
     <!-- /.container -->
   </footer>
