@@ -120,7 +120,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>Message:</label>
-              <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+              <textarea rows="10" cols="100" class="form-control" id="message" placeholder="If you have any messages, please enter them here." required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
             </div>
           </div>
           <div id="success"></div>
@@ -155,3 +155,35 @@
 </body>
 
 </html>
+
+<script>
+  "use strict";
+  var $ = function(id) {
+    return document.getElementById(id);
+  };
+
+  var sendMessage = function(){
+    var name = $("name").value;
+    var phone = $("phone").value;
+    var email = $("email").value;
+    var message = $("message").value;
+    var errorMessage = "";
+
+  if(name == "") { errorMessage = "Please enter your name." }
+  else if(phone == "") { errorMessage = "Please enter your phone." }
+  else if(email == "") { errorMessage = "Please enter your email." }
+  else if(message == "") { errorMessage = "Please enter your message." }
+
+  if (errorMessage == ""){
+    alert("You successfully submit the message.");
+  }
+  else{
+    alert(errorMessage);
+  }
+  };
+
+  window.onload = function() {
+    $("sendMessageButton").onclick = sendMessage;
+  };
+
+</script>
